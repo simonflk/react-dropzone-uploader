@@ -55,6 +55,7 @@
     "react-test-renderer": "^16.6.3",
     "react-toastify": "^4.5.2",
     "style-loader": "^0.23.1",
+    "typescript": "^3.2.4",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.21.0",
@@ -66,11 +67,13 @@
       "\\.(png|jpg|jpeg|gif|svg|woff|woff2)$": "<rootDir>/tests/fileMock.js"
     }
   },
+  "typings": "typings/react-dropzone-uploader.d.ts",
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.build.config.js && cp src/styles.css dist/styles.css",
     "dev": "webpack-dev-server --config webpack.config.js --mode development --open",
     "lint": "eslint src",
-    "test": "jest --coverage",
+    "test": "jest --coverage && npm run lint && npm run typescript",
+    "typescript": "tsc --project ./typings/tests",
     "styleguide": "styleguidist server",
     "build-styleguide": "styleguidist build",
     "styleguide-quickstart": "styleguidist server --config styleguide-quickstart.config.js",
