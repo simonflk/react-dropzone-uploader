@@ -251,7 +251,7 @@ class Dropzone extends React.Component {
     } catch (e) {
       console.error('Error Upload Params', e.stack)
     }
-    const { url, method = 'POST', body, fields = {}, headers = {}, meta: extraMeta = {} } = params || {}
+    const { url, method = 'POST', field = 'file', body, fields = {}, headers = {}, meta: extraMeta = {} } = params || {}
     delete extraMeta.status
 
     if (!url) {
@@ -301,7 +301,7 @@ class Dropzone extends React.Component {
       }
     })
 
-    formData.append('file', fileWithMeta.file)
+    formData.append(field, fileWithMeta.file)
     if (this.props.timeout) xhr.timeout = this.props.timeout
     xhr.send(body || formData)
     fileWithMeta.xhr = xhr
